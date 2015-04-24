@@ -29,7 +29,7 @@ repositories {
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-security")
     compile("org.springframework.boot:spring-boot-starter-web")
-    compile("org.springframework.security.oauth:spring-security-oauth2:2.0.6.RELEASE")
+    compile("org.springframework.security.oauth:spring-security-oauth2:2.0.7.RELEASE")
 
     testCompile("org.springframework.boot:spring-boot-starter-test") 
 }
