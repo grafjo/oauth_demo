@@ -25,32 +25,22 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     private DataSource dataSource;
 
     @Bean
-    //@Primary
     public TokenStore tokenStore() {
-        //return new InMemoryTokenStore();
         return new JdbcTokenStore(dataSource);
     }
 
     @Bean
-    //@Primary
-    public DefaultTokenServices tokenServices(TokenStore tokenStore) {
+    public DefaultTokenServices tokenServices() {
         final DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
         defaultTokenServices.setAccessTokenValiditySeconds(-1);
-        defaultTokenServices.setTokenStore(tokenStore);
+        defaultTokenServices.setTokenStore(tokenStore());
         return defaultTokenServices;
     }
-
-    @Autowired
-    private TokenStore tokenStore;
-
-    @Autowired
-    private DefaultTokenServices tokenServices;
-
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 
-        endpoints.tokenServices(tokenServices).tokenStore(tokenStore);
+        endpoints.tokenServices(tokenServices()).tokenStore(tokenStore());
     }
     
     @Override
